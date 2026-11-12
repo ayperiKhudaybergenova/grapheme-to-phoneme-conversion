@@ -1,63 +1,147 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/4bhnZrOw)
-# Assignment 4: Sequence transduction
+# Grapheme-to-Phoneme Conversion: NLP & Deep Learning
 
-**Deadline:** Jul 25, 2025
+A Natural Language Processing (NLP) project focused on converting written words into their phonemic representations using machine learning and sequence-to-sequence learning.
 
-The problem we are trying to solve in this assignment is 
-_grapheme to phoneme conversion_ (G2P).
-The task is predicting the phonemic transcription
-of a given (orthographic) word.
-For example for the word `computer`,
-we want to obtain a phonemic form `kəmpjutɚ` represented in IPA.
+The project explores how computational models can learn the relationship between orthographic representations (graphemes) and phonological representations (phonemes).
 
-As before, you can find the data in your repository as two separate files.
-The file [nlp2-a4.train](nlp2-a4.train) contains the training instances,
-and the file [nlp2-a4.test](nlp2-a4.test) contains the test instances.
-Each line in the training file contains
-orthographic and phonemic representations
-of a word separated by a tab character.
-The phonemic representations are tokenized.
-That is, some of the _segments_ are multiple IPA symbols
-and/or Unicode characters.
-Each segment in the phonetic form is separated by a space.
-The test file only has a word (grapheme) per line.
-The data comes from an earlier
-[SIGMORPHON](https://sigmorphon.github.io/) shared task.
+## Project Overview
 
-The expected output is similar to the training file.
-Each line should contain an orthographic word, a tab, and the
-corresponding prediction (phoneme sequence).
-You are not required to keep segment boundaries in the phoneme sequence.
-For example, both of the following lines are acceptable
-for as a prediction for word "language" (you should include only one):
+Grapheme-to-phoneme (G2P) conversion is a fundamental NLP task that maps written language to its pronunciation.
 
-```
-language	l æ ŋ ɡ w ɪ d͡ʒ
-language	læŋɡwɪd͡ʒ
+For example:
+
+```text
+Input:  computer
+Output: kəmpjutɚ
 ```
 
-You are allowed to use any additional unlabeled / unsegmented data.
-However, you are not allowed to use any data set particularly
-prepared for any G2P task.
+The task involves learning mappings between two different sequences:
 
-Note that although simplified (shorter sequences, fewer units),
-the task is essentially the same as common tasks like
-machine translation, summarization or paraphrasing.
-As a result typical approaches to the task involve
-encoder-decoder neural networks.
+- **Input:** Orthographic character sequences (graphemes).
+- **Output:** Phonemic sequences represented using the International Phonetic Alphabet (IPA).
 
-The evaluation will be based on exact match,
-and average Levenshtein distance.
+**Objective:** Develop models that predict phonemic transcriptions from orthographic word representations.
 
-For submissions, follow the same procedure as the previous assignments.
-Your prediction and source file names should follow the convention,
-`a4-<method>.predictions`, and `a4-<method>.py`, respectively.
-If you use [OpenNMT](https://opennmt.net/) for this task,
-submit your configuration file with the same convention
-(with `.yaml` extension). In this case, all files referenced
-from the configuration file should also be pushed to the repository.
+## Technical Skills & Technologies
 
-Similar to assignment 3, we do not provide a baseline.
-You are strongly recommended to make use of the lab sessions
-where example solutions (for similar tasks) will be provided,
-and you can ask questions about or discuss your solutions.
+- **Programming:** Python
+- **Natural Language Processing:** Grapheme-to-phoneme conversion, phonological processing
+- **Machine Learning:** Sequence transduction, supervised learning
+- **Deep Learning:** Encoder-decoder architectures, neural sequence modeling
+- **Data Processing:** Unicode and IPA text processing
+- **Libraries:** PyTorch / TensorFlow, OpenNMT, NumPy
+- **Evaluation:** Exact Match Accuracy, Levenshtein Distance
+- **Development:** Git, GitHub
+
+## Methodology
+
+G2P conversion can be formulated as a sequence-to-sequence learning problem.
+
+A model learns to transform an input sequence of graphemes into an output sequence of phonemes.
+
+The general workflow consists of:
+
+1. Preprocessing orthographic and phonemic representations.
+2. Preparing character and phoneme vocabularies.
+3. Encoding input sequences.
+4. Learning grapheme-to-phoneme mappings.
+5. Generating phonemic sequences.
+6. Evaluating predicted transcriptions.
+
+## Machine Learning Approaches
+
+Potential approaches for this task include:
+
+- Character-level sequence modeling
+- Encoder-decoder neural networks
+- Recurrent Neural Networks (RNN)
+- Long Short-Term Memory networks (LSTM)
+- Attention-based sequence-to-sequence architectures
+- Transformer-based architectures
+
+## Dataset
+
+The project uses a grapheme-to-phoneme dataset originating from a SIGMORPHON shared task.
+
+Each training instance contains:
+
+- An orthographic word
+- Its corresponding phonemic transcription
+- Phoneme segments represented as tokenized IPA sequences
+
+The test dataset contains orthographic words for which phonemic transcriptions must be generated.
+
+## Evaluation
+
+Model performance is evaluated using:
+
+- **Exact Match Accuracy:** Percentage of words with completely correct predicted phonemic sequences.
+- **Average Levenshtein Distance:** Measures the number of edits required to transform a predicted sequence into the reference transcription.
+
+These metrics evaluate both complete transcription accuracy and the quality of individual predictions.
+
+## Project Structure
+
+```text
+grapheme-to-phoneme-conversion/
+│
+├── nlp2-a4.train
+├── nlp2-a4.test
+├── a4-<method>.py
+├── a4-<method>.predictions
+├── README.md
+└── .gitignore
+```
+
+For OpenNMT implementations, the corresponding YAML configuration and referenced supporting files should also be included.
+
+## Running the Project
+
+Install the dependencies required by the selected implementation.
+
+Example:
+
+```bash
+pip install numpy pandas torch
+```
+
+Run a model:
+
+```bash
+python a4-<method>.py
+```
+
+The script generates phonemic predictions in the required tab-separated format.
+
+## Applications
+
+Grapheme-to-phoneme conversion is relevant to:
+
+- Text-to-speech (TTS) systems
+- Automatic speech processing
+- Pronunciation dictionaries
+- Speech synthesis
+- Computational linguistics
+- Language technology applications
+
+## Learning Outcomes
+
+This project demonstrates practical experience with:
+
+- Sequence-to-sequence learning
+- Neural network architectures
+- Character-level sequence modeling
+- Grapheme and phoneme representation
+- IPA and Unicode text processing
+- Neural text generation
+- Evaluation of sequence prediction models
+
+## Academic Context
+
+Originally developed as part of a university assignment in Statistical Natural Language Processing (SNLP).
+
+The repository has been organized as a portfolio project to demonstrate practical experience with NLP, sequence transduction, and neural machine learning.
+
+---
+
+**Technologies:** Python · NLP · Deep Learning · Sequence-to-Sequence Learning · G2P · IPA
